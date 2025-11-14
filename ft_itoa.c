@@ -1,42 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/11/14 12:49:00 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/14 15:18:43 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+char	*ft_itoa(int n)
 {
-	size_t	src_len;
-	size_t	i;
+	unsigned int	aux;
+	unsigned int	digits;
+	int				i;
+	char			*result;
 
-	src_len = ft_strlen(src);
-	if (src_len + 1 < size)
+	aux = n;
+	digits = 0;
+	result = 0;
+	while (aux > 0)
 	{
-		i = 0;
-		while (i < src_len)
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
+		aux /= 10;
+		digits++;
 	}
-	else if (size != 0)
+	i = digits - 1;
+	while (i >= 0)
 	{
-		i = 0;
-		while (i < size - 1)
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
+		result[i] = n % 10 + '0';
+		n /= 10;
+		i--;
 	}
-	return (src_len);
+	result[digits] = '\0';
+	return (result);
 }

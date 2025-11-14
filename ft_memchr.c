@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/11/13 14:45:13 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/14 12:57:39 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*memchr(const void *s, int c, size_t n)
 	size_t			i;
 
 	str = (unsigned char *) s;
-	uc = (unsigned char *) c;
+	uc = (unsigned char) c;
 	i = 0;
 	while (i < n)
 	{
