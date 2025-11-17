@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/11/13 17:00:17 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/17 10:45:50 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	i = 0;
 	while (src[i] && (dst_len + i + 1) < size)
 	{
-		dst[dst_len + 1] = src[i];
+		dst[dst_len + i] = src[i];
 		i++;
 	}
 	dst[dst_len + i] = '\0';

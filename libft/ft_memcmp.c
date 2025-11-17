@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/11/13 16:53:48 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/17 11:02:42 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		if ((unsigned char) str1[i] > (unsigned char) str2[i])
-			return (1);
-		if ((unsigned char) str1[i] < (unsigned char) str2[i])
-			return (-1);
+		if ((unsigned char) str1[i] != (unsigned char) str2[i])
+			return (str1[i] - str2[i]);
+		i++;
 	}
 	return (0);
 }

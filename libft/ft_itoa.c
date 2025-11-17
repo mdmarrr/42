@@ -6,34 +6,51 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/11/14 15:18:43 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/17 13:39:30 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static int	count_digits(int n)
+{
+	int	count;
+
+	if (n <= 0)
+		count = 1;
+	else
+		count = 0;
+	while (n != 0)
+	{
+		n /= 10;
+		count++;
+	}
+	return (count);
+}
+
 char	*ft_itoa(int n)
 {
-	unsigned int	aux;
-	unsigned int	digits;
-	int				i;
-	char			*result;
+	char	*str;
+	long	nb;
+	int		len;
 
-	aux = n;
-	digits = 0;
-	result = 0;
-	while (aux > 0)
+	nb = n;
+	len = count_digits(n);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	str[len] = '\0';
+	if (nb < 0)
 	{
-		aux /= 10;
-		digits++;
+		str[0] = '-';
+		nb = -nb;
 	}
-	i = digits - 1;
-	while (i >= 0)
+	if (nb == 0)
+		str[0] = '0';
+	while (nb > 0)
 	{
-		result[i] = n % 10 + '0';
-		n /= 10;
-		i--;
+		str[--len] = nb % 10 + '0';
+		nb /= 10;
 	}
-	result[digits] = '\0';
-	return (result);
+	return (str);
 }
