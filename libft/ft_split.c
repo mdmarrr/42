@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/11/17 16:26:34 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/18 15:11:02 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,21 @@ static void	*ft_free(char **str, int count)
 	return (NULL);
 }
 
-static char	*fill_word(const char *str, int start, int end)
+static char	*fill_word(const char *str, int start, int len)
 {
 	char	*word;
 	int		i;
 
 	i = 0;
-	word = malloc((end - start + 1) * sizeof(char));
+	word = malloc((len + 1) * sizeof(char));
 	if (!word)
 		return (NULL);
-	while (start < end)
+	while (i < len)
 	{
-		word[i] = str[start];
+		word[i] = str[start + i];
 		i++;
-		start++;
 	}
-	word[i] = 0;
+	word[i] = '\0';
 	return (word);
 }
 
@@ -66,33 +65,39 @@ static int	word_count(const char *str, char c)
 	return (count);
 }
 
+static int	word_len(const char *str, int i, char c)
+{
+	int	len;
+
+	len = 0;
+	while (str[i + len] && str[i + len] != c)
+		len++;
+	return (len);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**res;
 	size_t	i;
 	int		j;
-	int		start;
 
 	i = 0;
 	j = 0;
-	start = -1;
-	res = malloc((word_count(s, c) + 1) * sizeof(char *));
-	if (!res)
+	res = ft_calloc(word_count(s, c) + 1, sizeof(char *));
+	if (!res || !s)
 		return (NULL);
-	while (i <= ft_strlen(s))
+	while (s[i])
 	{
-		if (s[i] != c && start < 0)
-			start = i;
-		else if ((s[i] == c || i == ft_strlen(s)) && start >= 0)
+		while (s[i] && s[i] == c)
+			i++;
+		if (word_len(s, i, c) > 0)
 		{
-			res[j] = fill_word(s, start, i);
+			res[j] = fill_word(s, i, word_len(s, i, c));
 			if (!res[j])
 				return (ft_free(res, j));
-			start = -1;
+			i += word_len(s, i, c);
 			j++;
 		}
-		i++;
 	}
-	res[j] = NULL;
 	return (res);
 }
