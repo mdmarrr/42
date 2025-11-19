@@ -28,3 +28,26 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	}
 	return (tmp);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+	int 	*arr;
+	size_t	i;
+    size_t 	n;
+
+	n = 5;
+    arr = (int *)ft_calloc(n, sizeof(int));
+    if (!arr)
+    {
+        printf("Error\n");
+        return 1;
+    }
+	i = 0;
+    while (i < n)
+        printf("arr[%zu] = %d\n", i, arr[i++]);
+    free(arr);
+    return 0;
+}
+*/

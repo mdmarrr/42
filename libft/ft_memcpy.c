@@ -30,6 +30,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
+
 /*
 #include <stdio.h>
 int main(void)

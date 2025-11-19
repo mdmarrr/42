@@ -19,6 +19,7 @@ int	ft_isdigit(int c)
 	else
 		return (0);
 }
+
 /*
 #include <ctype.h>
 #include <stdio.h>
@@ -26,6 +27,9 @@ int main(void)
 {
     char c;
     c = '7';
+    printf("%d\n", ft_isdigit(c));
+    printf("%d\n", isdigit(c));
+    c = 'a';
     printf("%d\n", ft_isdigit(c));
     printf("%d\n", isdigit(c));
 }

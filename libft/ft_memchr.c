@@ -29,3 +29,29 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (NULL);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+    char buffer[] = "Hola mundo";
+    char c = 'm';
+    char *result;
+
+    // buscar 'm' en los primeros 10 caracteres
+    result = ft_memchr(buffer, c, 10);
+    if (result)
+        printf("Carácter '%c' en la posición %ld\n", c, result - buffer);
+    else
+        printf("Carácter '%c' no encontrado\n", c);
+
+    // buscar 'z' en los primeros 10 caracteres
+    c = 'z';
+    result = ft_memchr(buffer, c, 10);
+    if (result)
+        printf("Carácter '%c' en la posición %ld\n", c, result - buffer);
+    else
+        printf("Carácter '%c' no encontrado\n", c);
+    return 0;
+}
+*/

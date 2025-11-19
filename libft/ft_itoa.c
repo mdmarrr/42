@@ -54,3 +54,31 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+    char *str;
+
+    str = ft_itoa(1234);
+    if (str)
+    {
+        printf("ft_itoa(1234) = \"%s\"\n", str);
+        free(str);
+    }
+    str = ft_itoa(-5678);
+    if (str)
+    {
+        printf("ft_itoa(-5678) = \"%s\"\n", str);
+        free(str);
+    }
+    str = ft_itoa(0);
+    if (str)
+    {
+        printf("ft_itoa(0) = \"%s\"\n", str);
+        free(str);
+    }
+    return 0;
+}
+*/

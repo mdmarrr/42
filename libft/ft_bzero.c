@@ -24,21 +24,22 @@ void	ft_bzero(void *s, size_t n)
 		n--;
 	}
 }
+
 /*
 #include <stdio.h>
-#include <strings.h>
-#define BUF_SIZE 20
 int main(void)
 {
-    char *string;
-    char buffer[BUF_SIZE + 1];
-
-    memset(buffer, 0, sizeof(buffer));
-    string = (char *) memset(buffer, 'A', 10);
-    printf("%s\n", string);
-
-    ft_memset(buffer, 0, sizeof(buffer));
-    string = (char *) ft_memset(buffer, 'A', 10);
-    printf("%s\n", string);
+    int i;
+    char buffer[10] = "abcdef";
+    printf("Array inicial: \"%s\"\n", buffer);
+    // poner a cero los primeros 3 bytes
+    ft_bzero(buffer, 3);
+    printf("String al aplicar bzero: \"%s\"\n", buffer);
+    printf("Hex al aplicar bzero: ");
+    i = 0;
+    while (i < 6)
+        printf("%02x ", (unsigned char)buffer[i++]);
+    printf("\n");
+    return 0;
 }
 */

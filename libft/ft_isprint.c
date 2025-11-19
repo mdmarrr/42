@@ -19,6 +19,7 @@ int	ft_isprint(int c)
 	else
 		return (0);
 }
+
 /*
 #include <ctype.h>
 #include <stdio.h>
@@ -26,6 +27,9 @@ int main(void)
 {
     char c;
     c = '\n';
+    printf("%d\n", ft_isprint(c));
+    printf("%d\n", isprint(c));
+    c = 'a';
     printf("%d\n", ft_isprint(c));
     printf("%d\n", isprint(c));
 }
