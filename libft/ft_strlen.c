@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/11/14 13:50:57 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/19 18:16:08 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,3 +21,15 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+	const char	*s;
+
+	s = "Hello";
+	printf("Length: %zu\n", ft_strlen(s));
+	return (0);
+}
+*/

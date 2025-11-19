@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/11/14 15:50:34 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/19 17:09:39 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,3 +24,23 @@ void	ft_putendl_fd(char *s, int fd)
 	}
 	write(fd, "\n", 1);
 }
+
+/*
+#include <stdio.h>
+#include <fcntl.h>
+int	main(void)
+{
+	int	fd;
+
+	ft_putendl_fd("Hello world", 1);
+	fd = open("salida.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (fd == -1)
+	{
+		printf("Error al abrir el archivo");
+		return (1);
+	}
+	ft_putendl_fd("Hello world", fd);
+	close(fd);
+	return (0);
+}
+*/

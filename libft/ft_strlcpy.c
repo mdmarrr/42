@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/11/14 12:49:00 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/19 18:13:23 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,20 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	}
 	return (src_len);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+	const char	*src;
+	char		buffer1[20];
+	char		buffer2[5];
+
+	src = "Hello World";
+	ft_strlcpy(buffer1, src, sizeof(buffer1));
+	printf("%s\n", buffer1);
+	ft_strlcpy(buffer2, src, sizeof(buffer2));
+	printf("%s\n", buffer2);
+	return (0);
+}
+*/

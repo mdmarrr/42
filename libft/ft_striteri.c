@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/11/17 13:46:52 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/19 18:22:22 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,19 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 		i++;
 	}
 }
+
+/*
+#include <stdio.h>
+void	ft_a(unsigned int i, char *c)
+{
+	if (i % 2 == 0)
+		*c = 'a';
+}
+int	main(void)
+{
+	char	str[] = "Hello World";
+	ft_striteri(str, ft_a);
+	printf("%s\n", str);
+	return (0);
+}
+*/

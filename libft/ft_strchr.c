@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/11/17 09:21:25 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/19 17:24:09 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,25 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *) &s[i]);
 	return (NULL);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+	const char	*str;
+	char		*c;
+	char		*c2;
+
+	str = "Hello World";
+	c = ft_strchr(str, 'o');
+	if (c)
+		printf("%s\n", c);
+	else
+		printf("No se encontró 'o'\n");
+	c2 = ft_strchr(str, 'z');
+	if (c2)
+		printf("%s\n", c2);
+	else
+		printf("No se encontró 'z'\n");
+}
+*/

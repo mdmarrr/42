@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/11/13 15:12:45 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:40:02 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,10 @@ void	*ft_memset(void *s, int c, size_t n)
 
 /*
 #include <stdio.h>
-#define BUF_SIZE 20
 int main(void)
 {
-	char *string;
-	char buffer[BUF_SIZE + 1];
+	char	*string;
+	char	buffer[20];
 
 	memset(buffer, 0, sizeof(buffer));
 	string = (char *) memset(buffer, 'A', 10);

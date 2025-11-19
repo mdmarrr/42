@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/11/13 14:46:14 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/19 17:14:55 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,3 +18,14 @@ int	ft_tolower(int c)
 		return (c + 32);
 	return (c);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+	printf("%c\n", ft_tolower('A'));
+	printf("%c\n", ft_tolower('m'));
+	printf("%c\n", ft_tolower('!'));
+	return (0);
+}
+*/

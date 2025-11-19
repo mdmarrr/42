@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/11/17 11:02:42 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/19 18:44:46 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,9 @@ int main(void)
     char b[] = "Holanda";
     char c[] = "Hola";
 
-    // comparar a y b en los primeros 4 caracteres
-    printf("ft_memcmp(a, b, 4) = %d\n", ft_memcmp(a, b, 4));
-    printf("memcmp(a, b, 4)    = %d\n", memcmp(a, b, 4));
-    // comparar a y b en los primeros 5 caracteres
-    printf("ft_memcmp(a, b, 5) = %d\n", ft_memcmp(a, b, 5));
-    printf("memcmp(a, b, 5)    = %d\n", memcmp(a, b, 5));
-    // comparar a y c
-    printf("ft_memcmp(a, c, 4) = %d\n", ft_memcmp(a, c, 4));
-    printf("memcmp(a, c, 4)    = %d\n", memcmp(a, c, 4));
+    printf("%d\n", ft_memcmp(a, b, 4));
+    printf("%d\n", ft_memcmp(a, b, 5));
+    printf("%d\n", ft_memcmp(a, c, 4));
     return 0;
 }
 */

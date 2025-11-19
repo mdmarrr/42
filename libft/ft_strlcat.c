@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/11/17 10:45:50 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/19 18:03:14 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,20 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	dst[dst_len + i] = '\0';
 	return (src_len + dst_len);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+    char buffer[20] = "Hello ";
+    const char *src = "World";
+	size_t res = ft_strlcat(buffer, src, sizeof(buffer));
+	printf("%s\n", buffer);
+	
+	char buffer2[10] = "Hello ";
+	const char *src2 = "World";
+	size_t res2 = ft_strlcat(buffer2, src2, 8);
+	printf("%s\n", buffer2);
+	return (0);
+}
+*/

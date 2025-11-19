@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/11/14 15:43:01 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/19 17:54:29 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,27 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	res[j] = '\0';
 	return (res);
 }
+
+/*
+#include <stdio.h>
+int	main(void)
+{
+	const char	*s1;
+	const char	*s2;
+	char		*res;
+
+	s1 = "Hola ";
+	s2 = "Mundo";
+	res = ft_strjoin(s1, s2);
+	if (res == NULL)
+	{
+		printf("Error al reservar memoria");
+		return (1);
+	}
+	printf("Cadena 1: %s\n", s1);
+	printf("Cadena 2: %s\n", s2);
+	printf("Resultado: %s\n", res);
+	free(res);
+	return (0);
+}
+*/

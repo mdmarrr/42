@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/11/17 13:44:25 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/19 18:27:29 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,23 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	res[i] = 0;
 	return (res);
 }
+
+/*
+#include <stdio.h>
+char	ft_a(unsigned int i, char c)
+{
+	if (i % 2 == 0)
+		return ('a');
+	return (c);
+}
+int	main(void)
+{
+	const char	*original;
+	char		*as;
+	original = "Hello World";
+	as = ft_strmapi(original, ft_a);
+	printf("%s\n", as);
+	free(as);
+	return (0);
+}
+*/

@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/11/14 13:05:49 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/19 17:38:26 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,19 @@ char	*ft_strdup(const char *s)
 	dest[i] = '\0';
 	return (dest);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+	const char	*original;
+	char		*copia;
+
+	original = "Hello World";
+	copia = ft_strdup(original);
+	if (copia)
+		printf("Original: %s\nCopia: %s\n", original, copia);
+	free(copia);
+	return (0);
+}
+*/
