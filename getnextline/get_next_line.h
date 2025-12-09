@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 09:43:51 by magomez-          #+#    #+#             */
-/*   Updated: 2025/12/01 13:46:13 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:22:47 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <fcntl.h>
 
 char	*get_next_line(int fd);
-char	*_fill_line_buffer(int fd, char *stash);
+char	*_fill_line_buffer(int fd, char *left_c, char *buffer);
 char	*_set_line(char *line);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);

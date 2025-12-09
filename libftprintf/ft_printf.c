@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/12/04 13:59:35 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/12/06 16:29:56 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_printf(const char *format, ...)
 		if (*(format) == '%' && *(format + 1) == '%')
 			count += write(1, format++, 1);
 		else if (*(format) == '%')
-			count += print_format(*(++format), args);
+			count += ft_print_format(*(++format), args);
 		else
 			count += write(1, format, 1);
 		format++;
