@@ -72,7 +72,6 @@ cd get_next_line
 	
 		if (fd < 0) 
 			return (1);
-	
 	    while ((line = get_next_line(fd)) != NULL)
 	    {
 	        printf("%s", line);
