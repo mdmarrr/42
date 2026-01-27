@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2025/12/18 12:12:04 by magomez-         ###   ########.fr       */
+/*   Updated: 2025/11/18 10:57:22 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*temp;
 
-int	ft_printf(const char *format, ...);
-
-
-#endif
+	while (*lst)
+	{
+		temp = (*lst)->next;
+		del((*lst)->content);
+		free(*lst);
+		*lst = temp;
+	}
+}
