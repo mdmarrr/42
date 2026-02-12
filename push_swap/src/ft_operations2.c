@@ -12,106 +12,53 @@
 
 #include "../include/push_swap.h"
 
+void	ft_ra(t_stack **a, int j)
+{
+	t_stack	*first;
+	t_stack	*last;
+
+	if (!a || !*a || !(*a)->next)
+		return ;
+	first = *a;
+	*a = first->next;
+	first->next = NULL;
+	last = ft_stack_last(*a);
+	last->next = first;
+	if (j == 0)
+		write(1, "ra\n", 3);
+}
+
+void	ft_rb(t_stack **b, int j)
+{
+	t_stack	*first;
+	t_stack	*last;
+
+	if (!b || !*b || !(*b)->next)
+		return ;
+	first = *b;
+	*b = first->next;
+	first->next = NULL;
+	last = ft_stack_last(*b);
+	last->next = first;
+	if (j == 0)
+		write(1, "rb\n", 3);
+}
+
 void	ft_rr(t_stack **a, t_stack **b, int j)
 {
-	t_stack	*tmp;
+	int	executed;
 
-	if (!*a || !((*a)->next) || !*b || !((*b)->next))
-		return ;
-	tmp = *a;
-	*a = ft_lstlast(*a);
-	(*a)->next = tmp;
-	*a = tmp->next;
-	tmp->next = NULL;
-	tmp = *b;
-	*b = ft_lstlast(*b);
-	(*b)->next = tmp;
-	*b = tmp->next;
-	tmp->next = NULL;
-	if (j == 0)
+	executed = 0;
+	if (a && *a && (*a)->next)
+	{
+		ft_ra(a, 1);
+		executed = 1;
+	}
+	if (b && *b && (*b)->next)
+	{
+		ft_rb(b, 1);
+		executed = 1;
+	}
+	if (j == 0 && executed)
 		write(1, "rr\n", 3);
-}
-
-void	ft_rrr2(t_stack **b, int j)
-{
-	t_stack	*tmp;
-	int		i;
-
-	while ((*b)->next)
-	{
-		i++;
-		*b = (*b)->next;
-	}
-	(*b)->next = tmp;
-	while (i > 1)
-	{
-		tmp = tmp->next;
-		i--;
-	}
-	tmp->next = NULL;
-	if (j == 0)
-		write(1, "rrr\n", 4);
-}
-
-void	ft_rrr(t_stack **a, t_stack **b, int j)
-{
-	t_stack	*tmp;
-	int		i;
-
-	if (!*a || !((*a)->next) || !*b || !((*b)->next))
-		return ;
-	i = 0;
-	tmp = *a;
-	while ((*a)->next)
-	{
-		i++;
-		*a = (*a)->next;
-	}
-	(*a)->next = tmp;
-	while (i > 1)
-	{
-		tmp = tmp->next;
-		i--;
-	}
-	tmp->next = NULL;
-	ft_rrr2(b, j);
-}
-
-void	ft_pb(t_stack **stack_a, t_stack **stack_b, int j)
-{
-	t_stack	*tmp;
-
-	if (!*stack_a)
-		return ;
-	tmp = *stack_b;
-	*stack_b = *stack_a;
-	*stack_a = (*stack_a)->next;
-	(*stack_b)->next = tmp;
-	if (j == 0)
-		write(1, "pb\n", 3);
-}
-
-void	ft_rrb(t_stack **b, int j)
-{
-	t_stack	*tmp;
-	int		i;
-
-	if (!*b || !((*b)->next))
-		return ;
-	i = 0;
-	tmp = *b;
-	while ((*b)->next)
-	{
-		i++;
-		*b = (*b)->next;
-	}
-	(*b)->next = tmp;
-	while (i > 1)
-	{
-		tmp = tmp->next;
-		i--;
-	}
-	tmp->next = NULL;
-	if (j == 0)
-		write(1, "rrb\n", 4);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,17 +12,26 @@
 
 #include "../include/push_swap.h"
 
-//Free the stack
-void	ft_free(t_stack **lst)
+// Creates new stack node with given number
+t_stack	*ft_stack_new(int content)
 {
-	t_stack	*tmp;
+	t_stack	*new;
 
-	if (!lst)
+	new = malloc(sizeof (t_stack));
+	if (!new)
+		ft_error();
+	new->nbr = content;
+	new->next = NULL;
+	return (new);
+}
+
+// Function to add a new node to the stack from back side
+void	ft_add_back(t_stack **stack, t_stack *stack_new)
+{
+	if (!stack)
 		return ;
-	while (*lst)
-	{
-		tmp = (*lst)->next;
-		free(*lst);
-		*lst = tmp;
-	}
+	if (!*stack)
+		*stack = stack_new;
+	else
+		(ft_stack_last(*stack))->next = stack_new;
 }

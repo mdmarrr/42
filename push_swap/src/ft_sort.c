@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_sorted.c                                  :+:      :+:    :+:   */
+/*   ft_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2026/01/27 11:32:28 by magomez-         ###   ########.fr       */
+/*   Updated: 2026/01/27 11:00:27 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-//Check if the stack is sorted
-int	ft_check_sorted(t_stack *stack_a)
+void	ft_sort(t_stack **a)
 {
-	int	i;
+    t_stack	*b;
+	int	    n;
 
-	i = stack_a->nbr;
-	while (stack_a)
+    b = NULL;
+	if (!a || !*a || check_sorted(*a))
+		return ;
+	n = ft_stack_size(*a);
+	if (n == 2)
 	{
-		if (i > stack_a->nbr)
-			return (0);
-		i = stack_a->nbr;
-		stack_a = stack_a->next;
+		if ((*a)->nbr > (*a)->next->nbr)
+			ft_sa(a, 0);
 	}
-	return (1);
+	else if (n == 3)
+		ft_sort_three(a);
+    else if (n == 4)
+		ft_sort_four(a, &b);
+    else if (n == 5)
+	    ft_sort_five(a, &b);
+	else
+		ft_sort_big(a);
+    ft_free(&b);
 }

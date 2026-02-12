@@ -1,18 +1,39 @@
 NAME = push_swap.a
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -Iinclude -Ilibft
 
-SRCS =	push_swap.c
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
+
+SRCS =	\
+	src/main.c \
+	src/ft_error.c \
+	src/ft_free.c \
+	src/stack_init.c \
+	src/stack_utils.c \
+	src/ft_operations \
+	src/ft_operations2 \
+	src/ft_operation3 \
+	src/parse.c \
+	src/ft_sort.c \
+	src/ft_sort_three.c \
+	src/ft_sort_four.c \
+	src/ft_sort_five.c \
+	src/index.c \
+	src/big_sort.c
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+
+$(NAME): $(LIBFT) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
-
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
 
 clean:
 	rm -f $(OBJS)
