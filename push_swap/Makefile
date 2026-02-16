@@ -11,10 +11,10 @@ SRCS =	\
 	src/ft_free.c \
 	src/stack_init.c \
 	src/stack_utils.c \
-	src/ft_operations \
-	src/ft_operations2 \
-	src/ft_operation3 \
-	src/parse.c \
+	src/ft_operations.c \
+	src/ft_operations2.c \
+	src/ft_operations3.c \
+	src/ft_parse.c \
 	src/ft_sort.c \
 	src/ft_sort_three.c \
 	src/ft_sort_four.c \
