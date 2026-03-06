@@ -73,9 +73,9 @@ pa
 
 To test with random numbers:
 
-ARG=$(shuf -i 1-100 -n 100 | tr '\n' ' ')
-
-./push_swap.a $ARG
+ARG=$(shuf -i 1-500 -n 500 | tr '\n' ' ')
+./push_swap $ARG | tee moves | ./checker_linux $ARG
+wc -l moves
 
 ---
 

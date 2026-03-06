@@ -1,4 +1,4 @@
-NAME = push_swap.a
+NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iinclude -Ilibft
 
@@ -14,6 +14,7 @@ SRCS =	\
 	src/ft_operations.c \
 	src/ft_operations2.c \
 	src/ft_operations3.c \
+	src/ft_atoi2.c \
 	src/ft_parse.c \
 	src/ft_sort.c \
 	src/ft_sort_three.c \

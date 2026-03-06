@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2026/01/27 11:00:27 by magomez-         ###   ########.fr       */
+/*   Updated: 2026/03/06 18:50:59 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	ft_set_index(t_stack *a)
 	long	i;
 	t_stack	*node;
 
-	/* marcar todos como "sin index" */
 	node = a;
 	while (node)
 	{

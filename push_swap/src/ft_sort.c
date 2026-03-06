@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 13:14:16 by magomez-          #+#    #+#             */
-/*   Updated: 2026/01/27 11:00:27 by magomez-         ###   ########.fr       */
+/*   Updated: 2026/03/06 18:49:53 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_sort(t_stack **a)
 {
-    t_stack	*b;
-	int	    n;
+	t_stack	*b;
+	int		n;
 
-    b = NULL;
+	b = NULL;
 	if (!a || !*a || check_sorted(*a))
 		return ;
 	n = ft_stack_size(*a);
@@ -28,11 +28,11 @@ void	ft_sort(t_stack **a)
 	}
 	else if (n == 3)
 		ft_sort_three(a);
-    else if (n == 4)
+	else if (n == 4)
 		ft_sort_four(a, &b);
-    else if (n == 5)
-	    ft_sort_five(a, &b);
+	else if (n == 5)
+		ft_sort_five(a, &b);
 	else
 		ft_sort_big(a);
-    ft_free(&b);
+	ft_free(&b);
 }
