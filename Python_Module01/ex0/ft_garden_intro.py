@@ -1,20 +1,14 @@
-class Plant:
-    def __init__(self, name, height, age):
-        self.name = name
-        self.height = height
-        self.age = age
+#!/usr/bin/env python3
 
-    def display_info(self):
-        print(f"{self.name}: {self.height}cm, {self.age} days old")
+if __name__ == "__main__":
 
+    print("=== Welcome to My Garden ===")
 
-plant1 = Plant("Rose", 25, 30)
-plant2 = Plant("Sunflower", 80, 45)
-plant3 = Plant("Cactus", 15, 120)
+    name = "Rose"
+    height = 25
+    age = 30
 
-garden = [plant1, plant2, plant3]
-
-print("=== Garden Plant Registry ===")
-
-for plant in garden:
-    plant.display_info()
+    print(f"Plant: {name}")
+    print(f"Height: {height}cm")
+    print(f"Age: {age} days\n")
+    print("=== End of Program ===")
