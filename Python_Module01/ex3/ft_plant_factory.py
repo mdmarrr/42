@@ -11,12 +11,9 @@ garden = [
     Plant("Fern", 15, 120),
 ]
 
-print("=== Plant Factory Output ===")
-for plant in garden:
-    print(f"Created: {plant.name} ({plant.height}cm, {plant.age} days)")
 
-count = 0
-for plant in garden:
-    count += 1
+if __name__ == "__main__":
 
-print(f"\nTotal plants created: {count}")
+    print("=== Plant Factory Output ===")
+    for plant in garden:
+        plant.show("Created: ")

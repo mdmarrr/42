@@ -9,21 +9,20 @@ garden = [
 
 
 def simulate_growth(garden, days=7):
-    initial_heights = [plant.height for plant in garden]
+    initial_heights = [plant._height for plant in garden]
+
+    print("=== Garden Plant Growth ===")
 
     for day in range(days):
-        if day == 0 or day == days - 1:
-            print(f"=== Day {day + 1} ===")
+        print(f"=== Day {day + 1} ===")
         for plant in garden:
-            if day != 0:
-                plant.grow()
-                plant.age_one_day()
-            if day == 0 or day == days - 1:
-                print(plant.get_info())
+            plant.show()
+            plant.grow()
+            plant.age_a_day()
 
     for i, plant in enumerate(garden):
-        growth = plant.height - initial_heights[i]
-        print(f"Growth this week: +{growth}cm")
+        growth = plant._height - initial_heights[i]
+        print(f"Growth this week: {round(growth)}cm")
 
 
 if __name__ == "__main__":
