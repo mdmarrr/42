@@ -1,6 +1,20 @@
 #!/usr/bin/env python3
 
-from ex1.ft_garden_data import Plant
+class Plant:
+    def __init__(self, name, height, age):
+        self.name = name
+        self._height = height
+        self._age = age
+
+    def grow(self):
+        self._height += 0.8
+
+    def age_a_day(self):
+        self._age += 1
+
+    def show(self, prefix=""):
+        print(f"{prefix}{self.name}:", end=" ")
+        print(f"{self._height:.1f}cm, {self._age} days old")
 
 
 garden = [

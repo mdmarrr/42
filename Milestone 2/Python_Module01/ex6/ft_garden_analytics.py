@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 
-from ex1.ft_garden_data import Plant as BasePlant
-from ex5.ft_plant_types import Flower, Tree
 
-
-class Plant(BasePlant):
+class Plant:
     class _Stats:
         def __init__(self):
             self.grow_calls = 0
@@ -16,8 +13,12 @@ class Plant(BasePlant):
                   f"{self.age_calls} age, {self.show_calls} show")
 
     def __init__(self, name, height, age):
-        super().__init__(name, height, age)
+        self.name = name
+        self._height = 0
+        self._age = 0
         self._stats = self._Stats()
+        self.set_height(height, verbose=False)
+        self.set_age(age, verbose=False)
 
     @staticmethod
     def is_year_old(age):
@@ -28,19 +29,74 @@ class Plant(BasePlant):
         return cls("Unknown plant", 0, 0)
 
     def grow(self):
-        super().grow()
-        self._stats.grow_calls += 1
+        self._height += 0.8
 
     def age_a_day(self):
-        super().age_a_day()
-        self._stats.age_calls += 1
+        self._age += 1
+
+    def set_height(self, height, verbose=True):
+        if height < 0:
+            print(f"{self.name}: Error, height can't be negative")
+            print("Height update rejected")
+        else:
+            self._height = height
+            if verbose:
+                print(f"Height updated: {self._height}cm")
+
+    def set_age(self, age, verbose=True):
+        if age < 0:
+            print(f"{self.name}: Error, age can't be negative")
+            print("Age update rejected")
+        else:
+            self._age = age
+            if verbose:
+                print(f"Age updated: {self._age} days")
+
+    def get_height(self):
+        return self._height
+
+    def get_age(self):
+        return self._age
 
     def show(self, prefix=""):
-        super().show(prefix)
+        print(f"{prefix}{self.name}:", end=" ")
+        print(f"{self._height:.1f}cm, {self._age} days old")
         self._stats.show_calls += 1
 
     def display_stats(self):
         self._stats.display()
+
+
+class Flower(Plant):
+    def __init__(self, name, height, age, color):
+        super().__init__(name, height, age)
+        self.color = color
+        self._bloomed = False
+
+    def bloom(self):
+        self._bloomed = True
+
+    def show(self, prefix=""):
+        super().show(prefix)
+        print(f" Color: {self.color}")
+        if self._bloomed:
+            print(f" {self.name} is blooming beautifully!")
+        else:
+            print(f" {self.name} has not bloomed yet")
+
+
+class Tree(Plant):
+    def __init__(self, name, height, age, trunk_diameter):
+        super().__init__(name, height, age)
+        self.trunk_diameter = trunk_diameter
+
+    def produce_shade(self):
+        print(f"Tree {self.name} now produces a shade of {self._height:.1f}cm"
+              f" long and {self.trunk_diameter:.1f}cm wide.")
+
+    def show(self, prefix=""):
+        super().show(prefix)
+        print(f" Trunk diameter: {self.trunk_diameter:.1f}cm")
 
 
 class FlowerEx(Flower, Plant):
@@ -54,6 +110,7 @@ class FlowerEx(Flower, Plant):
 
     def age_a_day(self):
         super().age_a_day()
+        self._stats.age_calls += 1
 
     def show(self, prefix=""):
         super().show(prefix)
