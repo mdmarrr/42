@@ -9,7 +9,7 @@ def parse_inventory(args: list[str]) -> dict[str, int]:
 
     for arg in args:
         if ":" not in arg:
-            print(f"Error - invalid parameter '{arg}'")
+            print(f"Error: invalid parameter '{arg}'")
             continue
 
         item, quantity = arg.split(":", 1)
@@ -59,7 +59,7 @@ def main() -> None:
     args = sys.argv[1:]
 
     if not args:
-        print("Error: no inventory items provided")
+        print("Empty inventory")
         print("Usage: python3 ft_inventory_system.py item:quantity ...")
         return
 
