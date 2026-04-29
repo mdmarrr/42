@@ -2,9 +2,10 @@
 
 
 import sys
+from typing import TextIO
 
 
-def add_hash_to_lines(content):
+def add_hash_to_lines(content: str) -> str:
     lines = content.splitlines()
     new_content = ""
 
@@ -18,13 +19,14 @@ def main():
     if len(sys.argv) != 2:
         print("Usage: ft_stream_management.py <file>")
         return
-    
+
     filename = sys.argv[1]
 
     print("=== Cyber Archives Recovery & Preservation ===")
     print(f"Accessing file '{filename}'")
 
-    file = None
+    content: str = ""
+    file: TextIO | None = None
     try:
         file = open(filename, "r")
         content = file.read()
@@ -36,7 +38,8 @@ def main():
         print("---")
 
     except OSError as e:
-        print(f"[STDERR] Error opening file '{filename}': {e}", file=sys.stderr)
+        print(f"[STDERR] Error opening file '{filename}': {e}",
+              file=sys.stderr)
         return
 
     finally:
@@ -65,7 +68,7 @@ def main():
     if new_filename == "":
         print("Data not saved.")
         return
-    
+
     print(f"Saving data to '{new_filename}'")
 
     out_file = None
@@ -73,12 +76,13 @@ def main():
     try:
         out_file = open(new_filename, "w")
         out_file.write(new_content)
-    
+
     except OSError as e:
-        print(f"[STDERR] Error opening file '{new_filename}': {e}", file=sys.stderr)
+        print(f"[STDERR] Error opening file '{new_filename}': {e}",
+              file=sys.stderr)
         print("Data not saved.")
         return
-    
+
     finally:
         if out_file:
             out_file.close()

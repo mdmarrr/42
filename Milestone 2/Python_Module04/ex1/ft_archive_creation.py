@@ -18,7 +18,7 @@ def main() -> None:
     if len(sys.argv) != 2:
         print("Usage: ft_archive_creation.py <file>")
         return
-    
+
     filename = sys.argv[1]
 
     print("=== Cyber Archives Recovery & Preservation ===")
@@ -39,7 +39,7 @@ def main() -> None:
     except OSError as e:
         print(f"Errror opening file '{filename}': {e}")
         return
-    
+
     finally:
         if file:
             file.close()
@@ -60,7 +60,7 @@ def main() -> None:
     if new_filename == "":
         print("Not saving data.")
         return
-    
+
     print(f"Saving data to '{new_filename}'")
 
     file = None
@@ -72,7 +72,7 @@ def main() -> None:
 
     except OSError as e:
         print(f"Error saving file '{new_filename}': {e}")
-    
+
     finally:
         if file:
             file.close()
