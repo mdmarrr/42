@@ -15,7 +15,7 @@ def add_hash_to_lines(content: str) -> str:
     return new_content
 
 
-def main():
+def main() -> None:
     if len(sys.argv) != 2:
         print("Usage: ft_stream_management.py <file>")
         return

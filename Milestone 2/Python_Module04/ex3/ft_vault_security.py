@@ -34,7 +34,7 @@ def secure_archive(
     return (False, "Unexpected error")
 
 
-def main():
+def main() -> None:
     print("=== Cyber Archives Security ===")
     print()
     print("Using 'secure_archive' to read from a nonexistent file:")

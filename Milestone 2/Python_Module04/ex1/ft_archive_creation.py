@@ -22,7 +22,7 @@ def main() -> None:
     filename = sys.argv[1]
 
     print("=== Cyber Archives Recovery & Preservation ===")
-    print("Accessing file '{filename}'")
+    print(f"Accessing file '{filename}'")
 
     file = None
 
