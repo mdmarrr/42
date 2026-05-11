@@ -27,6 +27,7 @@ def main() -> None:
 
     content: str = ""
     file: TextIO | None = None
+    
     try:
         file = open(filename, "r")
         content = file.read()
@@ -71,7 +72,7 @@ def main() -> None:
 
     print(f"Saving data to '{new_filename}'")
 
-    out_file = None
+    out_file: TextIO | None = None
 
     try:
         out_file = open(new_filename, "w")

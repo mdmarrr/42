@@ -2,6 +2,7 @@
 
 
 import sys
+from typing import TextIO
 
 
 def main() -> None:
@@ -14,7 +15,8 @@ def main() -> None:
     print("=== Cyber Archives Recovery ===")
     print(f"Accessing file '{filename}'")
 
-    file = None
+    file: TextIO | None = None
+
     try:
         file = open(filename, "r")
         print("---")

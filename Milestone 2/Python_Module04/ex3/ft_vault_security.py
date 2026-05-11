@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 
 
-from typing import Tuple
-
-
 def secure_archive(
-        file_name: str, action: str = "read", content: str | None = None
-        ) -> Tuple[bool, str]:
+        file_name: str,
+        action: str = "read",
+        content: str | None = None
+        ) -> tuple[bool, str]:
 
     if action in (0, "read"):
         mode = "r"
@@ -17,21 +16,18 @@ def secure_archive(
 
     try:
         if mode == "r":
-            with open(file_name, mode) as f:
-                data = f.read()
-            return (True, data)
+            with open(file_name, mode, encoding="utf-8") as f:
+                return (True, f.read())
 
         elif mode == "w":
             if content is None:
                 return (False, 'No content provided for writing')
-            with open(file_name, mode) as f:
+            with open(file_name, mode, encoding="utf-8") as f:
                 f.write(content)
             return (True, 'Content successfully written to file')
 
-    except Exception as e:
+    except OSError as e:
         return (False, str(e))
-
-    return (False, "Unexpected error")
 
 
 def main() -> None:

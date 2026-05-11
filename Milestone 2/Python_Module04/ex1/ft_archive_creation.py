@@ -2,9 +2,10 @@
 
 
 import sys
+from typing import TextIO
 
 
-def add_hash_to_lines(content):
+def add_hash_to_lines(content: str) -> str:
     lines = content.splitlines()
     new_content = ""
 
@@ -24,7 +25,8 @@ def main() -> None:
     print("=== Cyber Archives Recovery & Preservation ===")
     print(f"Accessing file '{filename}'")
 
-    file = None
+    content: str = ""
+    file: TextIO | None = None
 
     try:
         file = open(filename, "r")
@@ -63,19 +65,20 @@ def main() -> None:
 
     print(f"Saving data to '{new_filename}'")
 
-    file = None
+    out_file: TextIO | None = None
 
     try:
-        file = open(new_filename, "w")
-        file.write(new_content)
+        out_file = open(new_filename, "w")
+        out_file.write(new_content)
         print(f"Data saved in file '{new_filename}'.")
 
     except OSError as e:
         print(f"Error saving file '{new_filename}': {e}")
+        return
 
     finally:
-        if file:
-            file.close()
+        if out_file:
+            out_file.close()
 
 
 if __name__ == "__main__":
