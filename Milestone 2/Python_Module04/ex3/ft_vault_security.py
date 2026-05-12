@@ -29,6 +29,8 @@ def secure_archive(
     except OSError as e:
         return (False, str(e))
 
+    return (False, "Unexpected error")
+
 
 def main() -> None:
     print("=== Cyber Archives Security ===")

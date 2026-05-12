@@ -27,7 +27,7 @@ def main() -> None:
 
     content: str = ""
     file: TextIO | None = None
-    
+
     try:
         file = open(filename, "r")
         content = file.read()
