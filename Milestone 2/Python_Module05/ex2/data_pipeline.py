@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
 
+import typing
 from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Union, Tuple, Protocol
 
 
 class DataProcessor(ABC):
-    def __init__(self):
+    def __init__(self) -> None:
         self._data_queue: List[tuple[int, str]] = []
         self._counter = 0
 
@@ -95,7 +96,6 @@ class ExportPlugin(Protocol):
 
 class CSVExportPlugin:
     def process_output(self, data: List[Tuple[int, str]]) -> None:
-        # Join all values in the batch into a comma-separated string
         csv_line = ",".join(str(value) for _, value in data)
         print("CSV Output:")
         print(csv_line)
@@ -103,21 +103,20 @@ class CSVExportPlugin:
 
 class JSONExportPlugin:
     def process_output(self, data: List[Tuple[int, str]]) -> None:
-        # Build a JSON-like string manually
-        items = [f'"item_{rank}": "{value}"' for rank, value in data]
+        items = [f'"item_{rank-1}": "{value}"' for rank, value in data]
         json_str = "{" + ", ".join(items) + "}"
         print("JSON Output:")
         print(json_str)
 
 
-class DataStream(ABC):
-    def __init__(self):
+class DataStream:
+    def __init__(self) -> None:
         self._processors: List[DataProcessor] = []
 
     def register_processor(self, proc: DataProcessor) -> None:
         self._processors.append(proc)
 
-    def process_stream(self, stream: list[Any]) -> None:
+    def process_stream(self, stream: list[typing.Any]) -> None:
         for element in stream:
             processed = False
             for proc in self._processors:
@@ -148,7 +147,7 @@ class DataStream(ABC):
                   f"items processed, remaining {remaining} on processor")
 
 
-def main():
+def main() -> None:
     print("=== Code Nexus - Data Pipeline ===")
     print()
     print("Initialize Data Stream...")

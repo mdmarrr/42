@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
 
+import typing
 from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Union
 
 
 class DataProcessor(ABC):
-    def __init__(self):
+    def __init__(self) -> None:
         self._data_queue: List[tuple[int, str]] = []
         self._counter = 0
 
@@ -88,14 +89,14 @@ class LogProcessor(DataProcessor):
             self._data_queue.append((self._counter, formatted))
 
 
-class DataStream(ABC):
-    def __init__(self):
+class DataStream:
+    def __init__(self) -> None:
         self._processors: List[DataProcessor] = []
 
     def register_processor(self, proc: DataProcessor) -> None:
         self._processors.append(proc)
 
-    def process_stream(self, stream: list[Any]) -> None:
+    def process_stream(self, stream: list[typing.Any]) -> None:
         for element in stream:
             processed = False
             for proc in self._processors:
@@ -117,10 +118,10 @@ class DataStream(ABC):
                   f"items processed, remaining {remaining} on processor")
 
 
-def main():
+def main() -> None:
     print("=== Code Nexus - Data Stream ===")
     print()
-    print("Iniatilize Data Stream...")
+    print("Initialize Data Stream...")
     ds = DataStream()
     ds.print_processors_stats()
     batch = [

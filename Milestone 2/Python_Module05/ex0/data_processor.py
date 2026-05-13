@@ -6,7 +6,7 @@ from typing import Any, Dict, List, Union
 
 
 class DataProcessor(ABC):
-    def __init__(self):
+    def __init__(self) -> None:
         self._data_queue: List[tuple[int, str]] = []
         self._counter = 0
 
@@ -88,7 +88,7 @@ class LogProcessor(DataProcessor):
             self._data_queue.append((self._counter, formatted))
 
 
-def main():
+def main() -> None:
     print("=== Code Nexus - Data Processor ===")
 
     print()
@@ -101,7 +101,7 @@ def main():
         numeric.ingest("foo")
     except ValueError as e:
         print(e)
-    nums = [1, 2, 3, 4, 5]
+    nums: List[Union[int, float]] = [1, 2, 3, 4, 5]
     print(f" Processing data: {nums}")
     numeric.ingest(nums)
     print(" Extracting 3 values...")
