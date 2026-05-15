@@ -9,5 +9,5 @@ def validate_ingredients(ingredients: str) -> str:
 
     if valid:
         return f"{ingredients} - VALID"
-    
+
     return f"{ingredients} - INVALID"
