@@ -6,6 +6,7 @@ class HealCapability(ABC):
     def heal(self) -> str:
         pass
 
+
 class TransformCapability(ABC):
     @abstractmethod
     def transform(self) -> str:
