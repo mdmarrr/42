@@ -2,7 +2,7 @@
 name = "matrix-loading"
 version = "0.1.0"
 description = "Exercise 1: package management and Matrix data analysis"
-authors = ["Student <student@example.com>"]
+authors = ["magomez- <magomez-@student.42malaga.com>"]
 package-mode = false
 
 [tool.poetry.dependencies]
