@@ -1,5 +1,3 @@
-"""Exercise 1: demonstrate package management and analyze Matrix data."""
-
 import importlib.metadata
 import importlib.util
 import sys
@@ -15,12 +13,10 @@ DATA_POINTS = 1000
 
 
 def package_is_available(package_name: str) -> bool:
-    """Return True if a package can be imported."""
     return importlib.util.find_spec(package_name) is not None
 
 
 def package_version(package_name: str) -> str:
-    """Return the installed package version, or 'unknown'."""
     try:
         return importlib.metadata.version(package_name)
     except importlib.metadata.PackageNotFoundError:
@@ -28,7 +24,6 @@ def package_version(package_name: str) -> str:
 
 
 def check_dependencies() -> bool:
-    """Print dependency status and return True when all are available."""
     missing_packages: list[str] = []
 
     print("Checking dependencies:")
@@ -46,7 +41,7 @@ def check_dependencies() -> bool:
     print()
     print("Missing dependencies detected.")
     print("Install them with pip:")
-    print("python -m pip install -r requirements.txt")
+    print("pip install -r requirements.txt")
     print()
     print("Or install them with Poetry:")
     print("poetry install")
@@ -54,9 +49,8 @@ def check_dependencies() -> bool:
 
 
 def print_dependency_management_comparison() -> None:
-    """Explain the operational difference between pip and Poetry."""
     print()
-    print("Dependency management comparison:")
+    print("pip and Poetry dependency management differences:")
     print("pip: reads requirements.txt as a direct installation list.")
     print("Poetry: reads pyproject.toml as project metadata and dependencies.")
     print("pip command: python -m pip install -r requirements.txt")
@@ -64,7 +58,6 @@ def print_dependency_management_comparison() -> None:
 
 
 def run_analysis() -> None:
-    """Generate simulated Matrix data with numpy and visualize it."""
     import matplotlib.pyplot as plt
     import numpy as np
     import pandas as pd
@@ -100,7 +93,11 @@ def run_analysis() -> None:
     print("Generating visualization...")
 
     plt.figure(figsize=(10, 6))
-    plt.plot(matrix_data["time_index"], matrix_data["anomaly_score"], alpha=0.35)
+    plt.plot(
+        matrix_data["time_index"],
+        matrix_data["anomaly_score"],
+        alpha=0.35,
+    )
     plt.plot(matrix_data["time_index"], matrix_data["rolling_anomaly"])
     plt.title("Matrix Anomaly Signal")
     plt.xlabel("Time index")
@@ -108,16 +105,15 @@ def run_analysis() -> None:
     plt.tight_layout()
     plt.savefig(OUTPUT_FILE)
     plt.close()
-
+    print()
     print("Analysis complete!")
     print(f"Results saved to: {OUTPUT_FILE}")
 
 
 def main() -> int:
-    """Entry point."""
-    print("Loading Programs")
+    print()
     print("LOADING STATUS: Loading programs...")
-
+    print()
     dependencies_ready = check_dependencies()
     print_dependency_management_comparison()
 

@@ -1,17 +1,13 @@
-"""Exercise 0: inspect Python virtual environments."""
-
 import os
 import site
 import sys
 
 
 def is_virtual_environment() -> bool:
-    """Return True when Python is running inside a virtual environment."""
     return sys.prefix != sys.base_prefix or hasattr(sys, "real_prefix")
 
 
 def environment_name() -> str:
-    """Return the active virtual environment name, if it can be inferred."""
     virtual_env_path = os.environ.get("VIRTUAL_ENV")
     if virtual_env_path:
         return os.path.basename(virtual_env_path)
@@ -19,7 +15,6 @@ def environment_name() -> str:
 
 
 def site_package_paths() -> list[str]:
-    """Return known site-packages paths for the current interpreter."""
     try:
         return site.getsitepackages()
     except AttributeError:
@@ -27,29 +22,31 @@ def site_package_paths() -> list[str]:
 
 
 def print_outside_matrix() -> None:
-    """Print instructions for creating a virtual environment."""
-    print("Outside the Matrix")
+    print()
+    print("MATRIX STATUS: You're still plugged in")
+    print()
     print(f"Current Python: {sys.executable}")
     print("Virtual Environment: None detected")
-    print(f"Global Prefix: {sys.base_prefix}")
-    print(f"User Package Path: {site.getusersitepackages()}")
+    print()
     print("WARNING: You're in the global environment!")
     print("The machines can see everything you install.")
+    print()
     print("To enter the construct, run:")
-    print("python -m venv matrix_env")
+    print("python3 -m venv matrix_env")
     print("source matrix_env/bin/activate  # On Unix")
     print(r"matrix_env\Scripts\activate  # On Windows")
+    print()
     print("Then run this program again.")
 
 
 def print_inside_construct() -> None:
-    """Print details about the active virtual environment."""
-    print("Inside the Construct")
+    print()
     print("MATRIX STATUS: Welcome to the construct")
+    print()
     print(f"Current Python: {sys.executable}")
     print(f"Virtual Environment: {environment_name()}")
     print(f"Environment Path: {sys.prefix}")
-    print(f"Global Python Prefix: {sys.base_prefix}")
+    print()
     print("SUCCESS: You're in an isolated environment!")
     print("Safe to install packages without affecting the global system.")
     print("Package installation path:")
@@ -58,7 +55,6 @@ def print_inside_construct() -> None:
 
 
 def main() -> None:
-    """Entry point."""
     if is_virtual_environment():
         print_inside_construct()
     else:
