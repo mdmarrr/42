@@ -12,11 +12,24 @@
 
 #include "../codexion.h"
 
+static void	init_last_compile_times(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->number_of_coders)
+	{
+		set_last_compile(&data->coders[i], data->start_time);
+		i++;
+	}
+}
+
 int	start_simulation(t_data *data)
 {
 	int	i;
 
 	data->start_time = get_time_ms();
+	init_last_compile_times(data);
 	if (pthread_create(&data->monitor, NULL, monitor_routine, data) != 0)
 		return (1);
 	i = 0;

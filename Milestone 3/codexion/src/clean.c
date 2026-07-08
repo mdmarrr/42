@@ -17,13 +17,23 @@ void	clean_data(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < data->number_of_coders)
+	while (i < data->dongles_initialized)
 	{
 		pthread_mutex_destroy(&data->dongles[i].mutex);
+		pthread_cond_destroy(&data->dongles[i].cond);
+		free(data->dongles[i].queue);
 		i++;
 	}
-	pthread_mutex_destroy(&data->stop_mutex);
-	pthread_mutex_destroy(&data->print_mutex);
+	i = 0;
+	while (i < data->coders_initialized)
+	{
+		pthread_mutex_destroy(&data->coders[i].state_mutex);
+		i++;
+	}
+	if (data->stop_mutex_initialized)
+		pthread_mutex_destroy(&data->stop_mutex);
+	if (data->print_mutex_initialized)
+		pthread_mutex_destroy(&data->print_mutex);
 	free(data->dongles);
 	free(data->coders);
 }

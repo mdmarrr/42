@@ -19,3 +19,16 @@ long	get_time_ms(void)
 	gettimeofday(&tv, NULL);
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
+
+void	smart_sleep(t_data *data, long duration)
+{
+	long	start;
+
+	start = get_time_ms();
+	while (!get_stop(data))
+	{
+		if (get_time_ms() - start >= duration)
+			break ;
+		usleep(500);
+	}
+}

@@ -36,9 +36,43 @@ int	all_finished(t_data *data)
 	i = 0;
 	while (i < data->number_of_coders)
 	{
-		if (data->coders[i].compiles < data->number_of_compiles_required)
+		if (get_compiles(&data->coders[i]) < data->number_of_compiles_required)
 			return (0);
 		i++;
 	}
 	return (1);
+}
+
+void	increment_compiles(t_coder *coder)
+{
+	pthread_mutex_lock(&coder->state_mutex);
+	coder->compiles++;
+	pthread_mutex_unlock(&coder->state_mutex);
+}
+
+int	get_compiles(t_coder *coder)
+{
+	int	value;
+
+	pthread_mutex_lock(&coder->state_mutex);
+	value = coder->compiles;
+	pthread_mutex_unlock(&coder->state_mutex);
+	return (value);
+}
+
+void	set_last_compile(t_coder *coder, long time)
+{
+	pthread_mutex_lock(&coder->state_mutex);
+	coder->last_compile_start = time;
+	pthread_mutex_unlock(&coder->state_mutex);
+}
+
+long	get_last_compile(t_coder *coder)
+{
+	long	time;
+
+	pthread_mutex_lock(&coder->state_mutex);
+	time = coder->last_compile_start;
+	pthread_mutex_unlock(&coder->state_mutex);
+	return (time);
 }

@@ -19,7 +19,10 @@ int	main(int argc, char **argv)
 	if (argc != 9)
 		return (1);
 	if (init_data(&data, argv) != 0)
+	{
+		clean_data(&data);
 		return (1);
+	}
 	if (start_simulation(&data) != 0)
 	{
 		clean_data(&data);

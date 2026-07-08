@@ -9,9 +9,12 @@ SRC =	src/main.c \
 		src/simulation.c \
 		src/time.c \
 		src/log.c \
+		src/dongles.c \
 		src/routine.c \
 		src/state.c \
-		src/monitor.c
+		src/monitor.c \
+		src/parse.c \
+		src/heap.c
 
 OBJ = $(SRC:.c=.o)
 
