@@ -12,6 +12,6 @@ def shadow_merge(list1: list[int], list2: list[int]) -> list[int]:
 			j += 1
 	
 	result.extend(list1[i:])
-    	result.extend(list2[j:])
+    result.extend(list2[j:])
 	
 	return result
