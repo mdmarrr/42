@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean.c                                            :+:      :+:    :+:   */
+/*   dongles.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 18:04:16 by magomez-          #+#    #+#             */
-/*   Updated: 2026/06/24 19:43:48 by magomez-         ###   ########.fr       */
+/*   Updated: 2026/09/09 16:52:47 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ int	take_dongles(t_coder *coder)
 		if (take_one_dongle(coder, coder->right))
 			return (1);
 		if (take_one_dongle(coder, coder->left))
-        {
-            release_one_dongle(coder, coder->right);
-            return (1);
-        }
-    }
+		{
+			release_one_dongle(coder, coder->right);
+			return (1);
+		}
+	}
 	else
 	{
 		if (take_one_dongle(coder, coder->left))
@@ -81,7 +81,7 @@ int	take_dongles(t_coder *coder)
 		if (take_one_dongle(coder, coder->right))
 		{
 			release_one_dongle(coder, coder->left);
-            return (1);
+			return (1);
 		}
 	}
 	return (0);

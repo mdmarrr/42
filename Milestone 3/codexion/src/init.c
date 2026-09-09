@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 18:04:16 by magomez-          #+#    #+#             */
-/*   Updated: 2026/06/24 19:42:30 by magomez-         ###   ########.fr       */
+/*   Updated: 2026/09/09 16:51:50 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	init_dongles(t_data *data)
 		data->dongles[i].cooldown_until = 0;
 		data->dongles[i].queue_size = 0;
 		data->dongles[i].queue_capacity = data->number_of_coders;
-		data->dongles[i].queue = malloc(sizeof(t_request) * data->dongles[i].queue_capacity);
+		data->dongles[i].queue
+			= malloc(sizeof(t_request) * data->dongles[i].queue_capacity);
 		if (!data->dongles[i].queue)
 			return (1);
 		if (pthread_mutex_init(&data->dongles[i].mutex, NULL) != 0)

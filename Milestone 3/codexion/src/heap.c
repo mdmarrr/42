@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean.c                                            :+:      :+:    :+:   */
+/*   heap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 18:04:16 by magomez-          #+#    #+#             */
-/*   Updated: 2026/06/24 19:43:48 by magomez-         ###   ########.fr       */
+/*   Updated: 2026/09/09 16:59:33 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,20 @@ void	heap_push(t_dongle *dongle, t_request request, int scheduler)
 	}
 }
 
-t_request	heap_pop(t_dongle *dongle, int scheduler)
+static void	swap_requests(t_request *a, t_request *b)
 {
-	t_request	top;
 	t_request	tmp;
-	int			i;
-	int			child;
 
-	top = dongle->queue[0];
-	dongle->queue_size--;
-	dongle->queue[0] = dongle->queue[dongle->queue_size];
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+static void	heapify_down(t_dongle *dongle, int scheduler)
+{
+	int	i;
+	int	child;
+
 	i = 0;
 	while (1)
 	{
@@ -62,10 +66,21 @@ t_request	heap_pop(t_dongle *dongle, int scheduler)
 		if (has_higher_priority(dongle->queue[i],
 				dongle->queue[child], scheduler))
 			break ;
-		tmp = dongle->queue[i];
-		dongle->queue[i] = dongle->queue[child];
-		dongle->queue[child] = tmp;
+		swap_requests(&dongle->queue[i], &dongle->queue[child]);
 		i = child;
+	}
+}
+
+t_request	heap_pop(t_dongle *dongle, int scheduler)
+{
+	t_request	top;
+
+	top = dongle->queue[0];
+	dongle->queue_size--;
+	if (dongle->queue_size > 0)
+	{
+		dongle->queue[0] = dongle->queue[dongle->queue_size];
+		heapify_down(dongle, scheduler);
 	}
 	return (top);
 }

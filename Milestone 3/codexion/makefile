@@ -12,6 +12,7 @@ SRC =	src/main.c \
 		src/dongles.c \
 		src/routine.c \
 		src/state.c \
+		src/coder_state.c \
 		src/monitor.c \
 		src/parse.c \
 		src/heap.c

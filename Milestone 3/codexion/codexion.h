@@ -6,7 +6,7 @@
 /*   By: magomez- <magomez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 18:04:16 by magomez-          #+#    #+#             */
-/*   Updated: 2026/07/02 20:35:00 by magomez-         ###   ########.fr       */
+/*   Updated: 2026/09/09 16:55:01 by magomez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,29 +78,29 @@ typedef struct s_data
 	int				print_mutex_initialized;
 }	t_data;
 
-int		parse_args(t_data *data, char **argv);
-int		init_data(t_data *data, char **argv);
-int		init_mutexes(t_data *data);
-int		init_dongles(t_data *data);
-int		init_coders(t_data *data);
-int		init_arrays(t_data *data);
-int		start_simulation(t_data *data);
-void	clean_data(t_data *data);
-int		take_dongles(t_coder *coder);
-void	drop_dongles(t_coder *coder);
-long	get_time_ms(void);
-void	print_status(t_coder *coder, char *msg);
-void	*coder_routine(void *arg);
-void	*monitor_routine(void *arg);
-int		get_stop(t_data *data);
-void	set_stop(t_data *data, int value);
-int		all_finished(t_data *data);
-void	smart_sleep(t_data *data, long duration);
-void	increment_compiles(t_coder *coder);
-int		get_compiles(t_coder *coder);
-void	set_last_compile(t_coder *coder, long time);
-long	get_last_compile(t_coder *coder);
-void	heap_push(t_dongle *dongle, t_request request, int scheduler);
+int			parse_args(t_data *data, char **argv);
+int			init_data(t_data *data, char **argv);
+int			init_mutexes(t_data *data);
+int			init_dongles(t_data *data);
+int			init_coders(t_data *data);
+int			init_arrays(t_data *data);
+int			start_simulation(t_data *data);
+void		clean_data(t_data *data);
+int			take_dongles(t_coder *coder);
+void		drop_dongles(t_coder *coder);
+long		get_time_ms(void);
+void		print_status(t_coder *coder, char *msg);
+void		*coder_routine(void *arg);
+void		*monitor_routine(void *arg);
+int			get_stop(t_data *data);
+void		set_stop(t_data *data, int value);
+int			all_finished(t_data *data);
+void		smart_sleep(t_data *data, long duration);
+void		increment_compiles(t_coder *coder);
+int			get_compiles(t_coder *coder);
+void		set_last_compile(t_coder *coder, long time);
+long		get_last_compile(t_coder *coder);
+void		heap_push(t_dongle *dongle, t_request request, int scheduler);
 t_request	heap_pop(t_dongle *dongle, int scheduler);
 
 #endif
