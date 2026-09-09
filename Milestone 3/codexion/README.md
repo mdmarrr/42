@@ -2,30 +2,45 @@
 
 # Codexion
 
-Codexion es un simulador concurrente desarrollado en C que modela un conjunto de coders que compiten por recursos compartidos (dongles) para realizar distintas tareas.
+## Description
 
-El proyecto implementa sincronización mediante POSIX Threads (`pthread`), exclusión mutua con mutexes, monitorización del estado de los hilos y planificación de acceso a recursos mediante los algoritmos **FIFO** y **Earliest Deadline First (EDF)**.
+Codexion is a concurrent simulation written in C in which multiple coders compete for shared resources called **dongles** in order to compile their code.
 
-## Características
+The project focuses on thread synchronization, shared-resource management, scheduling algorithms, and race-condition prevention using POSIX threads.
 
-- Simulación concurrente mediante `pthread`.
-- Sincronización mediante mutexes y variables de condición.
-- Monitor dedicado para detectar *burnout*.
-- Protección frente a *data races*.
-- Planificación de acceso a dongles:
-  - FIFO
+### Features
+
+- Concurrent execution using `pthread`.
+- Shared-resource protection using mutexes.
+- Condition variables for thread synchronization.
+- Dedicated monitor thread for burnout detection.
+- Thread-safe access to shared state.
+- Configurable dongle cooldown.
+- Two scheduling policies:
+  - FIFO (First In, First Out)
   - EDF (Earliest Deadline First)
-- Cooldown configurable para cada dongle.
-- Gestión segura de memoria.
-- Compatible con Valgrind y Helgrind.
+- Priority queues implemented using a binary heap.
+- Memory and synchronization management designed for Valgrind and Helgrind.
 
-## Compilación
+## Instructions
+
+### Compilation
+
+Compile the project with:
 
 ```bash
 make
 ```
 
-## Ejecución
+Other available rules:
+
+```bash
+make clean
+make fclean
+make re
+```
+
+### Usage
 
 ```bash
 ./codexion \
@@ -39,28 +54,109 @@ make
 <fifo|edf>
 ```
 
-### Ejemplo
+#### Example
 
 ```bash
 ./codexion 4 1200 200 100 100 3 100 fifo
 ```
 
-## Parámetros
+### Arguments
 
-| Parámetro | Descripción |
-|-----------|-------------|
-| number_of_coders | Número de coders. |
-| time_to_burnout | Tiempo máximo sin comenzar una nueva compilación. |
-| time_to_compile | Duración de la compilación. |
-| time_to_debug | Duración del debugging. |
-| time_to_refactor | Duración del refactoring. |
-| number_of_compiles_required | Número de compilaciones requeridas para finalizar la simulación. |
-| dongle_cooldown | Tiempo durante el cual un dongle permanece indisponible tras liberarse. |
-| fifo / edf | Algoritmo de planificación utilizado por los dongles. |
+- `number_of_coders`: Number of concurrent coders.
+- `time_to_burnout`: Maximum time a coder can go without starting a new compilation.
+- `time_to_compile`: Time required to compile.
+- `time_to_debug`: Time spent debugging.
+- `time_to_refactor`: Time spent refactoring.
+- `number_of_compiles_required`: Number of compilations each coder must complete.
+- `dongle_cooldown`: Time a dongle remains unavailable after being released.
+- `fifo|edf`: Scheduling policy used to prioritize requests for dongles.
 
-## Arquitectura
+All time values are expressed in milliseconds.
 
+### Simulation
+
+Each coder runs in its own thread and repeatedly performs the following cycle:
+
+```text
+Acquire two dongles
+Compile
+Release the dongles
+Debug
+Refactor
 ```
+
+A coder needs two dongles simultaneously in order to compile.
+
+After a dongle is released, it cannot be reused until its configured cooldown period has expired.
+
+The simulation stops when either:
+
+- every coder has completed the required number of compilations, or
+- a coder burns out.
+
+### Burnout
+
+Each coder has a deadline determined by the start time of its most recent compilation.
+
+A dedicated monitor thread continuously checks the coders.
+
+If a coder fails to start another compilation within `time_to_burnout`, the coder burns out and the simulation is stopped.
+
+### Scheduling
+
+Each dongle maintains a priority queue of pending requests.
+
+Two scheduling policies are supported.
+
+#### FIFO
+
+FIFO gives priority to the request that arrived first.
+
+```text
+priority = arrival time
+```
+
+#### EDF
+
+EDF gives priority to the request with the earliest deadline.
+
+```text
+priority = compilation deadline
+```
+
+The priority queues are implemented using binary heaps.
+
+### Synchronization
+
+The project uses several synchronization mechanisms:
+
+- `pthread_mutex_t` protects shared state and dongles.
+- `pthread_cond_t` is used for synchronization around dongle availability.
+- Per-coder mutexes protect mutable coder state.
+- A global stop mutex protects the simulation termination state.
+- A print mutex prevents concurrent output from being interleaved.
+
+## Blocking cases handled
+
+- **Deadlock:** prevented by changing the dongle acquisition order between odd and even coders, breaking Coffman's circular-wait condition.
+- **Starvation:** FIFO and EDF priority queues provide fair resource arbitration.
+- **Cooldown:** released dongles remain unavailable until their cooldown expires.
+- **Burnout:** a dedicated monitor checks each coder's last compilation time and stops the simulation when a deadline is missed.
+- **Logging:** a dedicated mutex serializes output and prevents interleaved messages.
+
+## Thread synchronization mechanisms
+
+- `pthread_mutex_t` protects dongles, coder state, the global stop flag, and logging.
+- `pthread_cond_t` is associated with each dongle and broadcasts availability changes to waiting coders.
+- Per-coder `state_mutex` prevents races on `compiles` and `last_compile_start`.
+- `stop_mutex` provides thread-safe communication between the monitor and coder threads through the shared stop flag.
+- `print_mutex` guarantees serialized output.
+
+No custom event abstraction is used; synchronization is implemented directly with POSIX threading primitives.
+
+## Project Structure
+
+```text
 src/
 ├── main.c
 ├── init.c
@@ -76,42 +172,54 @@ src/
 └── clean.c
 ```
 
-## Sincronización
+The main responsibilities are separated as follows:
 
-Cada coder se ejecuta en un hilo independiente.
+- `main.c`: program entry point.
+- `parse.c`: argument parsing and validation.
+- `init.c`: data structure and synchronization initialization.
+- `simulation.c`: thread creation and simulation startup.
+- `routine.c`: coder lifecycle.
+- `monitor.c`: burnout detection.
+- `dongle.c`: dongle acquisition and release.
+- `heap.c`: FIFO/EDF priority queue implementation.
+- `state.c`: synchronized access to shared state.
+- `time.c`: time utilities and interruptible sleep.
+- `log.c`: synchronized simulation output.
+- `clean.c`: resource cleanup.
 
-Los recursos compartidos se protegen mediante:
+## Testing
 
-- `pthread_mutex_t`
-- `pthread_cond_t`
-
-El monitor supervisa continuamente el tiempo transcurrido desde el inicio de la última compilación de cada coder para detectar situaciones de *burnout*.
-
-## Planificación
-
-Cada dongle mantiene una cola de peticiones.
-
-Dependiendo del algoritmo seleccionado:
-
-- **FIFO** prioriza la petición más antigua.
-- **EDF** prioriza el coder cuyo deadline es más próximo.
-
-## Verificación
-
-El proyecto ha sido validado mediante:
+Memory leaks can be checked with:
 
 ```bash
-valgrind --leak-check=full
+valgrind --leak-check=full ./codexion 4 1200 200 100 100 3 100 fifo
 ```
 
-y
+Thread synchronization and possible data races can be checked with:
 
 ```bash
-valgrind --tool=helgrind
+valgrind --tool=helgrind ./codexion 4 1200 200 100 100 3 100 fifo
 ```
 
-sin fugas de memoria ni condiciones de carrera detectadas.
+## Resources
 
-## Autor
+- POSIX Threads documentation (`pthread_create`, `pthread_mutex_*`,
+  `pthread_cond_*`).
+- Valgrind documentation: Memcheck and Helgrind.
+- Operating Systems: Three Easy Pieces (OSTEP), chapters on concurrency.
+- General references on FIFO and Earliest Deadline First (EDF) scheduling.
+- General references on binary heaps and priority queues.
+
+AI was used as a learning and development assistant for:
+
+- Understanding POSIX threads, mutexes, condition variables, and race conditions.
+- Reviewing the concurrency design and identifying synchronization issues.
+- Discussing FIFO/EDF scheduling and priority-queue implementation.
+- Debugging memory leaks and data races using Valgrind and Helgrind.
+- Reviewing code organization and helping document the project.
+
+The implementation was written, tested, and validated by the author.
+
+## Author
 
 María del mar Gómez del Valle
