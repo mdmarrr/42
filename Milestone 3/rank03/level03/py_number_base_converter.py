@@ -12,8 +12,7 @@ def number_base_converter(number: str, from_base: int, to_base: int) -> str:
 	
 	value = 0
 
-	for char in number:
-		char = char.upper()
+	for char in number.upper():
 
 		if char not in digits:
 			return "ERROR"
@@ -31,8 +30,7 @@ def number_base_converter(number: str, from_base: int, to_base: int) -> str:
 	result = ""
 
 	while value > 0:
-		digit = value % to_base
-		result = digits[digit] + result
+		result = digits[value % to_base] + result
 		value //= to_base
 
 	return result
