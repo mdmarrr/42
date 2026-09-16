@@ -5,7 +5,7 @@ def echo_validator(text: str) -> bool:
 		if char.isalpha():
 			clean += char.lower()
 
-		if clean == "":
-			return False
-		
-		return clean == clean[::-1]
+	if clean == "":
+		return False
+
+	return clean == clean[::-1]
