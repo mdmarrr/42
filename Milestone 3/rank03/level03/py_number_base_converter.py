@@ -1,36 +1,21 @@
 def number_base_converter(number: str, from_base: int, to_base: int) -> str:
-	digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-	if from_base < 2 or from_base > 36:
-		return "ERROR"
-	
-	if to_base < 2 or to_base > 36:
-		return "ERROR"
-	
-	if number == "":
-		return "ERROR"
-	
-	value = 0
+    if from_base < 2 or from_base > 36 or to_base < 2 or to_base > 36:
+        return "ERROR"
 
-	for char in number.upper():
+    try:
+        number = int(number, from_base)
+    except ValueError:
+        return "ERROR"
 
-		if char not in digits:
-			return "ERROR"
-		
-		digit = digits.index(char)
+    if number == 0:
+        return "0"
 
-		if digit >= from_base:
-			return "ERROR"
-		
-		value = value * from_base + digit
-	
-	if value == 0:
-		return "0"
-	
-	result = ""
+    result = ""
 
-	while value > 0:
-		result = digits[value % to_base] + result
-		value //= to_base
+    while number > 0:
+        result = digits[number % to_base] + result
+        number = number // to_base
 
-	return result
+    return result
