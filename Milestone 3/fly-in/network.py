@@ -27,12 +27,12 @@ class Network:
         if (self.zones.get(zone1.name) is not zone1 or self.zones.get(zone2.name) is not zone2):
             raise ValueError("Both zones must belong to the network")
         
-        for existing in self.connections:
+        for existing in self.connection:
             if ((existing.zone1 is zone1 and existing.zone2 is zone2)
                 or (existing.zone1 is zone2 and existing.zone2 is zone1)):
                     raise ValueError(f"Duplicate connection {connection.name}")
 
-        self.connections.append(connection)
+        self.connection.append(connection)
         zone1.neighbors.append(connection)
         if zone2 is not zone1:
              zone2.neighbors.append(connection)

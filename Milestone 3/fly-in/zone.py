@@ -34,7 +34,7 @@ class Zone:
     def get_connection_to(self, other: "Zone") -> "Connection":
         """Return the connection linking this zone to the given neighboor"""
 
-        for connection in self.neighboors:
+        for connection in self.neighbors:
             if connection.zone1 == other or connection.zone2 == other:
                 return connection
 
